@@ -6,8 +6,6 @@ import Navbar from "components/Common/Navbar";
 import PasswordEdit from "./Account/Passwords/Edit";
 import Profile from "./Account/Profile";
 import Notes from "./Notes";
-import Contacts from "./Contacts";
-import Settings from "./Settings";
 
 const Home = () => {
   return (
