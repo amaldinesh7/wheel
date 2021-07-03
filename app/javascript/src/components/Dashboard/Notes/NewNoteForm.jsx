@@ -74,7 +74,7 @@ export default function NewNoteForm({ onClose, refetch }) {
             <label>Add Due Date to Note</label>
             <Switch
               checked={dueDateCheck}
-              onChange={setDueDateCheck(!dueDateCheck)}
+              onChange={e => setDueDateCheck(e.target.value)}
             />
           </div>
           {dueDateCheck && (
