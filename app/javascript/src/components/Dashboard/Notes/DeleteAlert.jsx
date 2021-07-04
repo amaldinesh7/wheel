@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Alert, Toastr } from "neetoui";
 
-export default function DeleteAlert({ showDeleteAlert }) {
+export default function DeleteAlert({ onClose, showDeleteAlert }) {
   const [open, setOpen] = useState(showDeleteAlert);
   const onSubmitHandler = () => {
-    setOpen(false);
+    onClose();
     Toastr.success("Note deleted successfully");
+  };
+  const onCancelHandler = () => {
+    onClose();
   };
   return (
     <Alert
@@ -14,7 +17,7 @@ export default function DeleteAlert({ showDeleteAlert }) {
       message="Are you sure you want to delete the note? All of your data will be permanently removed from our database forever. This action cannot be undone."
       onClose={() => setOpen(false)}
       cancelButtonProps={{
-        onClick: () => setOpen(false),
+        onClick: () => onCancelHandler(),
       }}
       submitButtonProps={{
         label: "Delete",
