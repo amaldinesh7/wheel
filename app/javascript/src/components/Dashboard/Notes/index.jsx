@@ -16,33 +16,33 @@ const Notes = () => {
   const [selectedNoteIds, setSelectedNoteIds] = useState([]);
   const [notes, setNotes] = useState([
     {
-      id:1,
-      title:'Change support email',
-      description:'forward all internal mails...',
-      tags:{text:'Internal',color:"blue"},
-      createdDate:new Date(),
-      dueDate:new Date(),
-      contact:'Karthik Menon',
+      id: 1,
+      title: "Change support email",
+      description: "forward all internal mails...",
+      tags: { text: "Internal", color: "blue" },
+      createdDate: new Date(),
+      dueDate: new Date(),
+      contact: "Karthik Menon",
     },
     {
-      id:2,
-      title:'Feedback',
-      description:'Feedback V1.0......',
-      tags:{text:'Agile Workflow',color:"green"},
-      createdDate:new Date(),
-      dueDate:new Date(),
-      contact:'Karthik Menon',
+      id: 2,
+      title: "Feedback",
+      description: "Feedback V1.0......",
+      tags: { text: "Agile Workflow", color: "green" },
+      createdDate: new Date(),
+      dueDate: new Date(),
+      contact: "Karthik Menon",
     },
     {
-      id:3,
-      title:'feedback Hover',
-      description:'Feedback V2.0......',
-      tags:{text:'Bug',color:"red"},
-      createdDate:new Date(),
-      dueDate:new Date(),
-      contact:'Amal Dinesh',
+      id: 3,
+      title: "feedback Hover",
+      description: "Feedback V2.0......",
+      tags: { text: "Bug", color: "red" },
+      createdDate: new Date(),
+      dueDate: new Date(),
+      contact: "Amal Dinesh",
     },
-]);
+  ]);
 
   useEffect(() => {
     fetchNotes();
@@ -87,6 +87,18 @@ const Notes = () => {
               onClick: () => setShowDeleteAlert(true),
               disabled: !selectedNoteIds.length,
             }}
+            sortProps={{
+              options: [
+                { label: "Name", value: "name" },
+                { label: "Age", value: "age" },
+              ],
+            }}
+            paginationProps={{
+              count: 241,
+              pageNo: 1,
+              pageSize: 50,
+            }}
+            toggleFilter={() => {}}
           />
           <NoteTable
             selectedNoteIds={selectedNoteIds}
