@@ -11,7 +11,7 @@ export default function NoteTable({
   const deletePopup = <span>Delete</span>;
   return (
     <div className="w-full px-4">
-      <table className="nui-table nui-table--checkbox">
+      <table className="nui-table nui-table--checkbox nui-table--actions">
         <thead>
           <tr>
             <th>
@@ -40,10 +40,7 @@ export default function NoteTable({
         </thead>
         <tbody>
           {notes.map(note => (
-            <tr
-              key={note.id}
-              className={"cursor-pointer bg-white hover:bg-gray-50"}
-            >
+            <tr key={note.id}>
               <td>
                 <Checkbox
                   checked={selectedNoteIds.includes(note.id)}
@@ -97,7 +94,7 @@ export default function NoteTable({
                 </div>
               </td>
               <td>
-                <div className="flex flex-row items-end justify-around">
+                <div className="flex flex-row items-end justify-center space-x-4">
                   <Tooltip content={editPopup} position="bottom">
                     <Button style="icon" icon="ri-pencil-line" />
                   </Tooltip>
