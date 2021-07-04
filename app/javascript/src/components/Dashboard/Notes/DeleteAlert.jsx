@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import { Alert, Toastr } from "neetoui";
 
-export default function DeleteAlert({
-  refetch,
-  onClose,
-  selectedNoteIds,
-  showDeleteAlert,
-}) {
+export default function DeleteAlert({ showDeleteAlert }) {
   const [open, setOpen] = useState(showDeleteAlert);
   const onSubmitHandler = () => {
     setOpen(false);
