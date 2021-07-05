@@ -4,29 +4,29 @@ import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
 
-import NoteTable from "./NoteTable";
-import NewNotePane from "./NewNotePane";
+import ContactTable from "./ContactTable";
+import NewContactPane from "./NewContactPane";
 import DeleteAlert from "./DeleteAlert";
 
-import { NOTES } from "./Constants";
+import { CONTACTS } from "./Constants";
 
-const Notes = () => {
+const Contacts = () => {
   const [loading, setLoading] = useState(true);
-  const [showNewNotePane, setShowNewNotePane] = useState(false);
+  const [showNewContactPane, setShowNewContactPane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedNoteIds, setSelectedNoteIds] = useState([]);
-  const [notes, setNotes] = useState(NOTES);
+  const [selectedContactIds, setSelectedContactIds] = useState([]);
+  const [contacts, setContacts] = useState(CONTACTS);
 
   useEffect(() => {
-    fetchNotes();
+    fetchContacts();
   }, []);
 
-  const fetchNotes = async () => {
+  const fetchContacts = async () => {
     try {
       setLoading(true);
       // const response = await notesApi.fetch();
-      // setNotes(response.data);
+      // setContacts(response.data);
     } catch (error) {
       logger.error(error);
     } finally {
@@ -40,16 +40,16 @@ const Notes = () => {
   return (
     <>
       <Header
-        title="Notes"
+        title="Contacts"
         actionBlock={
           <Button
-            onClick={() => setShowNewNotePane(true)}
-            label="Add New Note"
+            onClick={() => setShowNewContactPane(true)}
+            label="Add New Contact"
             icon="ri-add-line"
           />
         }
       />
-      {notes.length ? (
+      {contacts.length ? (
         <>
           <SubHeader
             searchProps={{
@@ -59,7 +59,7 @@ const Notes = () => {
             }}
             deleteButtonProps={{
               onClick: () => setShowDeleteAlert(true),
-              disabled: !selectedNoteIds.length,
+              disabled: !selectedContactIds.length,
             }}
             sortProps={{
               options: [
@@ -74,36 +74,36 @@ const Notes = () => {
             }}
             toggleFilter={() => {}}
           />
-          <NoteTable
-            selectedNoteIds={selectedNoteIds}
-            setSelectedNoteIds={setSelectedNoteIds}
-            notes={notes}
+          <ContactTable
+            selectedContactIds={selectedContactIds}
+            setSelectedContactIds={setSelectedContactIds}
+            contacts={contacts}
           />
         </>
       ) : (
         <EmptyState
           image={EmptyNotesListImage}
-          title="Your Notes list is empty"
-          // subtitle="Add your notes to send customized emails to them."
-          primaryAction={() => setShowNewNotePane(true)}
-          primaryActionLabel="Add New Note"
+          title="Your Contacts list is empty"
+          // subtitle="Add your contacts to send customized emails to them."
+          primaryAction={() => setShowNewContactPane(true)}
+          primaryActionLabel="Add New Contact"
         />
       )}
-      <NewNotePane
-        showPane={showNewNotePane}
-        setShowPane={setShowNewNotePane}
-        fetchNotes={fetchNotes}
+      <NewContactPane
+        showPane={showNewContactPane}
+        setShowPane={setShowNewContactPane}
+        fetchContacts={fetchContacts}
       />
       {showDeleteAlert && (
         <DeleteAlert
           showDeleteAlert={showDeleteAlert}
-          selectedNoteIds={selectedNoteIds}
+          selectedContactIds={selectedContactIds}
           onClose={() => setShowDeleteAlert(false)}
-          refetch={fetchNotes}
+          refetch={fetchContacts}
         />
       )}
     </>
   );
 };
 
-export default Notes;
+export default Contacts;

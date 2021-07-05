@@ -1,29 +1,28 @@
 import React, { useState } from "react";
-import * as yup from "yup";
+
 import { Formik, Form } from "formik";
 import { Input, Textarea, Select } from "neetoui/formik";
 import { Button, DateInput, Switch, Toastr } from "neetoui";
 import {
-  TAG_OPTIONS,
-  CONTACT_OPTIONS,
+  DEPARTMENT_OPTIONS,
   FORM_INITIAL_VALUES,
   VALIDATION_SCHEMA,
 } from "./Constants";
 
-export default function NewNoteForm({ onClose, refetch }) {
-  const [dueDateCheck, setDueDateCheck] = useState(false);
+export default function NewContactForm({ onClose, refetch }) {
+  const [addToBasecamp, setAddToBasecamp] = useState(true);
   const [selectedDueDate, setSelectedDueDate] = useState(new Date());
 
   const handleSubmit = async () => {
     try {
-      refetch();
+      // refetch();
+      console.log("amal");
       onClose();
-      Toastr.success("New note added successfully");
+      Toastr.success("New contact added successfully");
     } catch (err) {
       logger.error(err);
     }
   };
-
   return (
     <Formik
       initialValues={FORM_INITIAL_VALUES}
@@ -32,39 +31,24 @@ export default function NewNoteForm({ onClose, refetch }) {
     >
       {({ isSubmitting }) => (
         <Form className="space-y-4">
-          <Input label="Note Title" name="title" />
+          <Input label="Name" name="name" />
+          <Input label="Email" name="email" />
+          <Input label="Contact Number" name="contact" />
           <Select
-            label="Tags"
-            isCreateable
-            defaultValue={[{ value: "internal", label: "Internal" }]}
-            placeholder="Select an Option"
-            name="tags"
-            defaultOptions={TAG_OPTIONS}
-          />
-          <Textarea label="Note Description" name="description" rows={8} />
-          <Select
-            label="Assigned Contact"
-            isCreateable
-            defaultValue={{ value: "internal", label: "Internal" }}
-            placeholder="Select a Contact"
-            name="assignedContact"
-            defaultOptions={CONTACT_OPTIONS}
+            label="Department"
+            defaultValue={{ value: "engineering", label: "Engineering" }}
+            placeholder="Select a Department"
+            name="department"
+            defaultOptions={DEPARTMENT_OPTIONS}
           />
            
           <div className="flex justify-between">
-            <label>Add Due Date to Note</label>
+            <label>Add to Basecamp</label>
             <Switch
-              checked={dueDateCheck}
-              onChange={e => setDueDateCheck(e.target.value)}
+              checked={addToBasecamp}
+              onChange={e => setAddToBasecamp(!addToBasecamp)}
             />
           </div>
-          {dueDateCheck && (
-            <DateInput
-              value={selectedDueDate}
-              label="Due Date"
-              onChange={newDate => setSelectedDueDate(newDate)}
-            />
-          )}
           <div className="nui-pane__footer nui-pane__footer--absolute">
             <Button
               onClick={onClose}
