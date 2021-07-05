@@ -4,12 +4,8 @@ export const NOTES = [
   {
     id: 1,
     title: "Change support email",
-<<<<<<< HEAD
     description:
       "Forward all internal mails Forward all internal mails Forward all internal mails Forward all internal mails",
-=======
-    description: "forward all internal mails",
->>>>>>> 8ef0888 (Review comments fix and New contact additon added)
     tags: { text: "Internal", color: "blue" },
     createdDate: new Date(),
     dueDate: new Date(),
