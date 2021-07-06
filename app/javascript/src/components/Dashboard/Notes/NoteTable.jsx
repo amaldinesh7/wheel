@@ -64,7 +64,7 @@ export default function NoteTable({
                     label={note.title}
                     style="text"
                     href="https://www.bigbinary.com"
-                    className="text-blue-600 hover:underline"
+                    className="text-purple-500 hover:underline"
                   />
                 </div>
               </td>
